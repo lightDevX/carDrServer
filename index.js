@@ -54,8 +54,11 @@ async function run() {
 
         //Booking DataBase
 
-        app.post('/checkout' async (req, res) => {
+        app.post('/checkout', async (req, res) => {
             const bookings = req.body;
+            console.log(bookings);
+            const result = await bookingsCollections.insertOne(bookings);
+            res.send(result);
         })
 
 
