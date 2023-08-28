@@ -32,6 +32,7 @@ async function run() {
         await client.connect();
 
         const serviceCollections = client.db("Server-CarDR").collection("services");
+        const bookingsCollections = client.db("Server-CarDr").collection("bookings");
 
         app.get('/services', async (req, res) => {
             const cursor = serviceCollections.find();
@@ -44,12 +45,19 @@ async function run() {
             const query = { _id: new ObjectId(id) }
 
             const options = {
-                projections: { title: 1, }
+                projection: { title: 1, price: 1, service_id: 1 }
             }
 
-            const result = await serviceCollections.findOne(query);
+            const result = await serviceCollections.findOne(query, options);
             res.send(result);
         })
+
+        //Booking DataBase
+
+        app.post('/checkout' async (req, res) => {
+            const bookings = req.body;
+        })
+
 
 
         // Send a ping to confirm a successful connection
