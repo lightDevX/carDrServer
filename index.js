@@ -32,7 +32,7 @@ async function run() {
         await client.connect();
 
         const serviceCollections = client.db("Server-CarDR").collection("services");
-        const bookingsCollections = client.db("Server-CarDr").collection("bookings");
+        const bookingsCollections = client.db("Server-CarDR").collection("bookings");
 
         app.get('/services', async (req, res) => {
             const cursor = serviceCollections.find();
