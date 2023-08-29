@@ -54,6 +54,11 @@ async function run() {
 
         //Booking DataBase
 
+        app.get('/checkout', async (req, res) => {
+            const result = await serviceCollections.find().toArray();
+            res.send(result);
+        })
+
         app.post('/checkout', async (req, res) => {
             const bookings = req.body;
             console.log(bookings);
