@@ -45,7 +45,7 @@ async function run() {
             const query = { _id: new ObjectId(id) }
 
             const options = {
-                projection: { title: 1, price: 1, service_id: 1 }
+                projection: { title: 1, price: 1, service_id: 1, img: 1 }
             }
 
             const result = await serviceCollections.findOne(query, options);
@@ -64,6 +64,13 @@ async function run() {
             const bookings = req.body;
             console.log(bookings);
             const result = await bookingsCollections.insertOne(bookings);
+            res.send(result);
+        })
+
+        app.delete('/checkout/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+            const result = await bookingsCollections.deleteOne(query);
             res.send(result);
         })
 
