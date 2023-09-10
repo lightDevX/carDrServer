@@ -55,7 +55,8 @@ async function run() {
         //Booking DataBase
 
         app.get('/checkout', async (req, res) => {
-            const result = await serviceCollections.find().toArray();
+            console.log(req.query);
+            const result = await bookingsCollections.find().toArray();
             res.send(result);
         })
 
